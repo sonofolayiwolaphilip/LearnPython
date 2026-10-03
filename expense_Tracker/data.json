@@ -1,0 +1,20 @@
+{
+    "1": {
+        "expense": "Indomie",
+        "category": "Food",
+        "amount": 200.0,
+        "description": "Breakfast"
+    },
+    "2": {
+        "expense": "Scool Bag",
+        "category": "School",
+        "amount": 1000.0,
+        "description": "Purchase for resumption"
+    },
+    "3": {
+        "expense": "Bottled Water",
+        "category": "Food and Drinks",
+        "amount": 300.0,
+        "description": "Food and Drinks"
+    }
+}

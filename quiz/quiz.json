@@ -1,0 +1,249 @@
+{
+    "1": {
+        "What planet is known as the Red Planet?": {
+            "options": {
+                "A": "Venus",
+                "B": "Mars",
+                "C": "Jupiter",
+                "D": "Saturn"
+            },
+            "answer": {
+                "B": "Mars"
+            }
+        }
+    },
+    "2": {
+        "What is the largest ocean on Earth?": {
+            "options": {
+                "A": "Atlantic Ocean",
+                "B": "Indian Ocean",
+                "C": "Pacific Ocean",
+                "D": "Arctic Ocean"
+            },
+            "answer": {
+                "C": "Pacific Ocean"
+            }
+        }
+    },
+    "3": {
+        "Who painted the Mona Lisa?": {
+            "options": {
+                "A": "Vincent van Gogh",
+                "B": "Leonardo da Vinci",
+                "C": "Pablo Picasso",
+                "D": "Claude Monet"
+            },
+            "answer": {
+                "B": "Leonardo da Vinci"
+            }
+        }
+    },
+    "4": {
+        "How many colors are there in a rainbow?": {
+            "options": {
+                "A": "Five",
+                "B": "Six",
+                "C": "Seven",
+                "D": "Eight"
+            },
+            "answer": {
+                "C": "Seven"
+            }
+        }
+    },
+    "5": {
+        "What is the capital city of France?": {
+            "options": {
+                "A": "London",
+                "B": "Berlin",
+                "C": "Paris",
+                "D": "Madrid"
+            },
+            "answer": {
+                "C": "Paris"
+            }
+        }
+    },
+    "6": {
+        "Which animal is known as man's best friend?": {
+            "options": {
+                "A": "Cat",
+                "B": "Dog",
+                "C": "Horse",
+                "D": "Rabbit"
+            },
+            "answer": {
+                "B": "Dog"
+            }
+        }
+    },
+    "7": {
+        "What is the chemical symbol for gold?": {
+            "options": {
+                "A": "Go",
+                "B": "Gd",
+                "C": "Au",
+                "D": "Ag"
+            },
+            "answer": {
+                "C": "Au"
+            }
+        }
+    },
+    "8": {
+        "What gas do plants absorb from the air for photosynthesis?": {
+            "options": {
+                "A": "Oxygen",
+                "B": "Carbon dioxide",
+                "C": "Nitrogen",
+                "D": "Hydrogen"
+            },
+            "answer": {
+                "B": "Carbon dioxide"
+            }
+        }
+    },
+    "9": {
+        "What is the highest mountain in the world?": {
+            "options": {
+                "A": "Mount Kilimanjaro",
+                "B": "Mount Everest",
+                "C": "Mount Fuji",
+                "D": "Denali"
+            },
+            "answer": {
+                "B": "Mount Everest"
+            }
+        }
+    },
+    "10": {
+        "How many legs do insects have?": {
+            "options": {
+                "A": "Four",
+                "B": "Six",
+                "C": "Eight",
+                "D": "Ten"
+            },
+            "answer": {
+                "B": "Six"
+            }
+        }
+    },
+    "11": {
+        "What is the largest mammal on Earth?": {
+            "options": {
+                "A": "African Elephant",
+                "B": "Blue Whale",
+                "C": "Giraffe",
+                "D": "Hippopotamus"
+            },
+            "answer": {
+                "B": "Blue Whale"
+            }
+        }
+    },
+    "12": {
+        "Which bird can fly backwards?": {
+            "options": {
+                "A": "Hummingbird",
+                "B": "Eagle",
+                "C": "Sparrow",
+                "D": "Crow"
+            },
+            "answer": {
+                "A": "Hummingbird"
+            }
+        }
+    },
+    "13": {
+        "What is the hardest natural substance on Earth?": {
+            "options": {
+                "A": "Gold",
+                "B": "Iron",
+                "C": "Diamond",
+                "D": "Quartz"
+            },
+            "answer": {
+                "C": "Diamond"
+            }
+        }
+    },
+    "14": {
+        "Who wrote the play Romeo and Juliet?": {
+            "options": {
+                "A": "Charles Dickens",
+                "B": "William Shakespeare",
+                "C": "Mark Twain",
+                "D": "Jane Austen"
+            },
+            "answer": {
+                "B": "William Shakespeare"
+            }
+        }
+    },
+    "15": {
+        "Which planet is closest to the Sun?": {
+            "options": {
+                "A": "Mercury",
+                "B": "Venus",
+                "C": "Earth",
+                "D": "Mars"
+            },
+            "answer": {
+                "A": "Mercury"
+            }
+        }
+    },
+    "16": {
+        "Who is the current president of Nigeria?": {
+            "options": {
+                "A": "Tinubu",
+                "B": "Bola Ige",
+                "C": "Ahmed Lawal",
+                "D": "Goodluck Jonathan"
+            }
+        },
+        "answer": {
+            "A": "Tinubu"
+        }
+    },
+    "17": {
+        "When is Independence Day in Nigeria?": {
+            "options": {
+                "A": "30 SEPT",
+                "B": "1ST OCT",
+                "C": "1st OCTOMBER",
+                "D": "4TH OCT"
+            },
+            "answer": {
+                "B": "1ST OCT"
+            }
+        }
+    },
+    "18": {
+        "Where is Ilorin Found?": {
+            "options": {
+                "A": "Nigeria",
+                "B": "Algeria",
+                "C": "Lybia",
+                "D": "Kwara"
+            },
+            "answer": {
+                "D": "Kwara"
+            }
+        }
+    },
+    "19": {
+        "What is the capital of Nigeria?": {
+            "options": {
+                "A": "NIger",
+                "B": "Niaja",
+                "C": "Abuja",
+                "D": "Lagos"
+            },
+            "answer": {
+                "C": "Abuja"
+            }
+        }
+    }
+}
