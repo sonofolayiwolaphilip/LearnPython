@@ -85,6 +85,7 @@ def fetch_question(score, answered_questions):
     answered_questions.append(random_id)
 
     question_data = quiz[random_id]
+    print(question_data)
 
     print(f"\n📝 {question_data['question']}")
     for option_id, option_text in question_data["options"].items():
@@ -96,7 +97,7 @@ def fetch_question(score, answered_questions):
         print("Quitting current game session...")
         return score, False
 
-    correct_letter = question_data["asnwer"]
+    correct_letter = question_data["answer"]
 
     if response == correct_letter:
         print("✅ Correct!")
@@ -128,7 +129,7 @@ def add_new_question():
         opt = input(f"Enter Option {letter}: ").strip()
         while not opt:
             opt = input(f"Option {letter} cannot be blank").strip()
-            options[letter] = opt
+        options[letter] = opt
     correct_answer = input("Enter the correct option Letter (A, B,C, D): ").strip()
     while correct_answer not in ["A", "B", "C", "D"]:
         correct_answer = input("Invalid choice. Please enter A,B,C or D").strip()

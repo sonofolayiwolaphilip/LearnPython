@@ -1,12 +1,12 @@
 {
-    "4400270c-8872-47da-8e1b-bd38be3a5426": {
-        "question": "Who is Abraham",
-        "options": {},
+   "3ccb3396-1255-489e-bda4-010dc0cd1a5b": {
+        "question": "Who is the Father of Jesus?",
+        "options": {
+            "A": "Joseph",
+            "B": "Daniel",
+            "C": "Jacob",
+            "D": "david"
+        },
         "answer": "A"
-    },
-    "e726969c-c26a-4127-bfef-cbfa6e8d8f01": {
-        "question": "Where is Kwara Located?",
-        "options": {},
-        "answer": "D"
     }
 }
