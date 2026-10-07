@@ -1,190 +1,221 @@
 import json
 import uuid
 import random
+import getpass
 
-# Utility function to load data from the external JSON database file
-def open_file():
+USER_FILE = "users.json"
+QUIZ_FILE = "myquiz.json"
+
+# ============================
+# FILE I/O OPERATIONS
+# ============================
+def load_open_json(filename):
     try:
-        with open("quiz.json", "r") as file:
-            quiz = json.load(file)
-            return quiz
-    except json.JSONDecodeError:
-        return "JSON Decode Error"
-    except FileNotFoundError:
-        return "File Not Found"
-    
+        with open(filename, "r") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
 
-
-def save_file(data):
+def save_json(filename, data):
     try:
-        with open("quiz.json", "w") as file:
+        with open(filename, "w") as file:
             json.dump(data, file, indent=4)
-            print("Saved successfully")
     except Exception as e:
-        print(f"Error saving file: {e}")
+        print(f"Error saving data {e}")
 
+# ===============================
+# AUTHENTICATION ENGINE
+# ===============================
 
+def register_user():
+    print("\n --- Create Account ---")
+    users = load_open_json(USER_FILE)
 
-def fetch_question(score, answered_question):
-    # Retrieve the parsed quiz dictionary from the JSON file
-    quiz = open_file()
+    username = input("Enter a unique username: ").strip()
+    if not username:
+        print("Username cannot be empty. ")
+        return None
 
-    # Create a list of keys that have not been answered
-    unanswered_ids = [k for k in quiz.keys() if k not in answered_question]
+    if username in users:
+        print("Username already exists! Try logging in. ")
+        return None
 
-    # checks if there are questions that not been answere
-    # is unanswered_ids empty?
+    password = getpass.getpass("Enter a password: ").strip()
+    if not password:
+        print("Password cannot be Empty. ")
+        return None
+
+    users[username] = {
+        "password": password,
+        "highsocre": 0
+    }
+    save_json(USER_FILE, users)
+    print("REGISTRATION SUCCESSFUL!")
+    return username
+
+def login_user():
+    print("\n --- Login ----")
+    users = load_open_json(USER_FILE)
+
+    username = input("Username: ").strip()
+    password = getpass.getpass("Password: ").strip()
+
+    if username in users and users[username]["password"] == password:
+        print(f"Welcome back, {username}!")
+        return username
+        
+    print("Invalid username or password.")
+    return None
+"""
+# =======================================
+|           CORE GAME ALGORITHM          |
+# =======================================
+
+"""
+
+def fetch_question(score, answered_questions):
+    quiz = load_open_json(QUIZ_FILE)
+    unanswered_ids = [k for k in quiz.keys() if k not in answered_questions]
+
     if not unanswered_ids:
-        print("You have answered all available questions")
-        return score
+        print("\n🎉 Spectacular! You have answered all available questions")
+        return score, False
 
-    # Pick a random Id from the list
     random_id = random.choice(unanswered_ids)
+    answered_questions.append(random_id)
 
-    # Save the IDs immediate to answered_question list
-    answered_question.append(random_id)
+    question_data = quiz[random_id]
 
-    #Fetch the question's dictionary data using the chosen ID
-    random_dic = quiz[random_id]
+    print(f"\n📝 {question_data['question']}")
+    for option_id, option_text in question_data["options"].items():
+        print(f" {option_id}. {option_text}")
 
-        # Extract the literal question text and its nested metadata (options/answers)
-    for quest, opt_ans in random_dic.items():
-        print(f"{quest}")
+    response = input("\nYour answer(A,B,C,D) or 'q' to quit: ").strip().upper()
 
-        # Iterate through the options dictionary to print choices
-        for option_id, options in opt_ans["options"].items():
-                    
-                    # Display the multiple-choice option key along with its text
-                print(f"{option_id}. {options}")
+    if response == "Q":
+        print("Quitting current game session...")
+        return score, False
 
-                    # Capture user response and force it to lowercase for case-insensitive matching
-        response = (input("Response A, B, C or D: ")).lower()
-                
-            # Extract the correct option key string from the Answer dict, then force to lowercase
-        correct_letter = (list(opt_ans["answer"].keys())[0]).lower()
-                
-                    # Check if the player's input matches the expected answer key
-        if response == correct_letter:
-            print("Correct")
-            score += 1
-        else:
-            print("Wrong")
-        # Immediately exit the function and send the updated score back to the loop
-        return score
-    
-    return score
+    correct_letter = question_data["asnwer"]
 
+    if response == correct_letter:
+        print("✅ Correct!")
+        score += 1
+    else:
+        print(f"❌ Wrong! The correct answer was {correct_letter}") 
+
+    return score, True
+
+def update_highscore(username, final_score):
+    users = load_open_json(USER_FILE)
+    if username in users:
+        current_record = users[username].get("highscore", 0)
+        if final_score > current_record:
+            print(f"🏆 New Personal High Score! Old: {current_record} ➔ New: {final_score}")
+            users[username]["highscore"] = final_score
+            save_json(USER_FILE, users)
 
 def add_new_question():
-    quiz = open_file()
-    next_id = str(len(quiz) + 1)
+    quiz = load_open_json(QUIZ_FILE)
+    print(f"\n --- Adding Question #{len(quiz) + 1} ---")
 
-    print(f"\n --- Adding Question #{next_id} ---")
-    question_text = input("Enter the quiz question: ").strip()
+    question_text = input("Enter the Quiz Question: ").strip()
     while not question_text:
-        question_text = input("Enter the quiz question: ").strip()
-    
-    opt_a = input("Enter Option A").strip()
-    while not opt_a:
-        opt_a = input("Enter Option A").strip()
-    
-    opt_b = input("Enter Option B").strip()
-    while not opt_b:
-        opt_b = input("Enter Option B").strip()
+        question_text = input("Question cannot be blank: ").strip()
 
-    opt_c = input("Enter Option C").strip()
-    while not opt_c:
-        opt_c = input("Enter Option C").strip()
-
-    opt_d = input("Enter Option D").strip()
-    while not opt_d:
-        opt_d = input("Enter Option D").strip()
-
-    correct_answer = input("Answer: ").strip()
-    while not correct_answer:
-        correct_answer = input("Answer: ").strip()
-    ans_key = ""
-    if correct_answer == opt_a:
-        ans_key = "A"
-    elif correct_answer == opt_b:
-        ans_key = "B"
-    elif correct_answer == opt_c:
-        ans_key = "C"
-    elif correct_answer == opt_d:
-        ans_key = "D"
-
+    options = {}
+    for letter in ["A", "B", "C", "D"]:
+        opt = input(f"Enter Option {letter}: ").strip()
+        while not opt:
+            opt = input(f"Option {letter} cannot be blank").strip()
+            options[letter] = opt
+    correct_answer = input("Enter the correct option Letter (A, B,C, D): ").strip()
+    while correct_answer not in ["A", "B", "C", "D"]:
+        correct_answer = input("Invalid choice. Please enter A,B,C or D").strip()
 
     new_question_structure = {
-            question_text :
-                {
-                    "options" : {
-                        "A":opt_a,
-                        "B":opt_b,
-                        "C":opt_c,
-                        "D":opt_d
-                    },
-                    "answer" :{
-                        ans_key: correct_answer
-                    }
-                }
-            }
-    
-    next_id = str(uuid.uuid4())
-    quiz[next_id] = new_question_structure
-    save_file(quiz)
-    
-def play_game():
-    # Initialize the tracking variables for persistent game state
-    score = 0
-    play = True
-    quiz = open_file()    
+        "question": question_text,
+        "options": options,
+        "answer": correct_answer
+    }
 
+    quiz[str(uuid.uuid4())] = new_question_structure
+    save_json(QUIZ_FILE, quiz)
+    print("Question added successfully")
+
+
+def play_game(username):
+    quiz = load_open_json(QUIZ_FILE)
     if not quiz:
-        print("\nNo questions available! Please add a question first.")
+        print("\n⚠️ No questions available! Please ask an administrator to add questions first.")
         return
-    numb_of_question = len(quiz)
-    answered_question = []
 
-    while len(answered_question) < numb_of_question:
-        score = fetch_question(score, answered_question)
-        if score == -1:
+    score = 0
+    answered_questions = []
+    total_pool = len(quiz)
+
+    print(f"\n🎬 Game started! Player: {username}")
+    while len(answered_questions) < total_pool:
+        score, keep_playing = fetch_question(score, answered_questions)
+        if not keep_playing:
             break
+        print(f"Current Score: {score}")
+    print(f"\n === game Over! Final Score: {score}/{len(answered_questions)}===")
+    if username:
+        update_highscore(username, score)
 
-        print(f"Current Score is: {score}")
-    print(f"\n === Game Over! Final Score is: {score}/{len(answered_question)} ===")
-
+ # ======================================
+#|            MANIN ROUTER               |#
+ # ======================================
 
 def main():
-    state = "MAIN_MENU"
+    current_user = None
 
-    while state != "EXIT":
-        match state:
-            case "MAIN_MENU":
-                print("\n=== GENERAL QUIZ ===")
-                print("1. Play Game")
-                print("2. Add New Question")
-                print("3. Exit")
+    while True:
+        if not current_user:
+            print("\n=== GENERAL QUIZ ===")
+            print("1. Login")
+            print("2. Register New Account")
+            print("3. Play as Guest")
+            print("4. View leaderboard")
+            print("5. Add New Question")
+            print("6. Exit")
 
-                choice = input("Select an option (1-3): ").strip()
-                match choice:
-                    case "1":
-                        state = "PLAY"
-                        
-                    case "2":
-                        state = "ADD"
-                    case "3":
-                        state = "EXIT"
-            case "PLAY":
-                play_game()
-                state = "MAIN_MENU"
-
-            case "ADD":
+            choice = input("Select an option (1-6): ").strip()
+            if choice == "1":
+                current_user = login_user()
+            elif choice == "2":
+                current_user = register_user()
+            elif choice == "3":
+                play_game(username=None)
+            # elif choice == "4":
+            #     show_leaderboard()
+            elif choice == "5":
                 add_new_question()
-                state = "MAIN_MENU"
-            case _:
-                state = "EXIT"
-    else:
-        print("\n Thanks for playing")
-        
+            elif choice == "6":
+                print("\n Thanks for playing! Goodbye")
+                break
+        else:
+            print(f"\n=== LOGGED IN AS: {current_user} ===")
+            print("1. Play Quiz")
+            print("2. View Leaderboard")
+            print("3. Add New Question")
+            print("4. Logout")
+            print("5. Exit")
+
+            choice = input("Select an option (1 - 5): ").strip()
+            if choice == "1":
+                play_game(current_user)
+            # elif choice == "2":
+            #     show_leaderboard()
+            elif choice == "3":
+                add_new_question()
+            elif choice == "4":
+                print(f"Logged out from {current_user}.")
+                current_user = None
+            elif choice == "5":
+                print("\nThanks for playing! Goodbye.")
+                break
+
 if __name__ == "__main__":
     main()

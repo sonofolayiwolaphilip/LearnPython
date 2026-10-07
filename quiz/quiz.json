@@ -1,249 +1,232 @@
-{
-    "1": {
-        "What planet is known as the Red Planet?": {
-            "options": {
-                "A": "Venus",
-                "B": "Mars",
-                "C": "Jupiter",
-                "D": "Saturn"
-            },
-            "answer": {
-                "B": "Mars"
-            }
-        }
-    },
-    "2": {
-        "What is the largest ocean on Earth?": {
-            "options": {
-                "A": "Atlantic Ocean",
-                "B": "Indian Ocean",
-                "C": "Pacific Ocean",
-                "D": "Arctic Ocean"
-            },
-            "answer": {
-                "C": "Pacific Ocean"
-            }
-        }
-    },
-    "3": {
-        "Who painted the Mona Lisa?": {
-            "options": {
-                "A": "Vincent van Gogh",
-                "B": "Leonardo da Vinci",
-                "C": "Pablo Picasso",
-                "D": "Claude Monet"
-            },
-            "answer": {
-                "B": "Leonardo da Vinci"
-            }
-        }
-    },
-    "4": {
-        "How many colors are there in a rainbow?": {
-            "options": {
-                "A": "Five",
-                "B": "Six",
-                "C": "Seven",
-                "D": "Eight"
-            },
-            "answer": {
-                "C": "Seven"
-            }
-        }
-    },
-    "5": {
-        "What is the capital city of France?": {
-            "options": {
-                "A": "London",
-                "B": "Berlin",
-                "C": "Paris",
-                "D": "Madrid"
-            },
-            "answer": {
-                "C": "Paris"
-            }
-        }
-    },
-    "6": {
-        "Which animal is known as man's best friend?": {
-            "options": {
-                "A": "Cat",
-                "B": "Dog",
-                "C": "Horse",
-                "D": "Rabbit"
-            },
-            "answer": {
-                "B": "Dog"
-            }
-        }
-    },
-    "7": {
-        "What is the chemical symbol for gold?": {
-            "options": {
-                "A": "Go",
-                "B": "Gd",
-                "C": "Au",
-                "D": "Ag"
-            },
-            "answer": {
-                "C": "Au"
-            }
-        }
-    },
-    "8": {
-        "What gas do plants absorb from the air for photosynthesis?": {
-            "options": {
-                "A": "Oxygen",
-                "B": "Carbon dioxide",
-                "C": "Nitrogen",
-                "D": "Hydrogen"
-            },
-            "answer": {
-                "B": "Carbon dioxide"
-            }
-        }
-    },
-    "9": {
-        "What is the highest mountain in the world?": {
-            "options": {
-                "A": "Mount Kilimanjaro",
-                "B": "Mount Everest",
-                "C": "Mount Fuji",
-                "D": "Denali"
-            },
-            "answer": {
-                "B": "Mount Everest"
-            }
-        }
-    },
-    "10": {
-        "How many legs do insects have?": {
-            "options": {
-                "A": "Four",
-                "B": "Six",
-                "C": "Eight",
-                "D": "Ten"
-            },
-            "answer": {
-                "B": "Six"
-            }
-        }
-    },
-    "11": {
-        "What is the largest mammal on Earth?": {
-            "options": {
-                "A": "African Elephant",
-                "B": "Blue Whale",
-                "C": "Giraffe",
-                "D": "Hippopotamus"
-            },
-            "answer": {
-                "B": "Blue Whale"
-            }
-        }
-    },
-    "12": {
-        "Which bird can fly backwards?": {
-            "options": {
-                "A": "Hummingbird",
-                "B": "Eagle",
-                "C": "Sparrow",
-                "D": "Crow"
-            },
-            "answer": {
-                "A": "Hummingbird"
-            }
-        }
-    },
-    "13": {
-        "What is the hardest natural substance on Earth?": {
-            "options": {
-                "A": "Gold",
-                "B": "Iron",
-                "C": "Diamond",
-                "D": "Quartz"
-            },
-            "answer": {
-                "C": "Diamond"
-            }
-        }
-    },
-    "14": {
-        "Who wrote the play Romeo and Juliet?": {
-            "options": {
-                "A": "Charles Dickens",
-                "B": "William Shakespeare",
-                "C": "Mark Twain",
-                "D": "Jane Austen"
-            },
-            "answer": {
-                "B": "William Shakespeare"
-            }
-        }
-    },
-    "15": {
-        "Which planet is closest to the Sun?": {
-            "options": {
-                "A": "Mercury",
-                "B": "Venus",
-                "C": "Earth",
-                "D": "Mars"
-            },
-            "answer": {
-                "A": "Mercury"
-            }
-        }
-    },
-    "16": {
-        "Who is the current president of Nigeria?": {
-            "options": {
-                "A": "Tinubu",
-                "B": "Bola Ige",
-                "C": "Ahmed Lawal",
-                "D": "Goodluck Jonathan"
-            }
-        },
-        "answer": {
-            "A": "Tinubu"
-        }
-    },
-    "17": {
-        "When is Independence Day in Nigeria?": {
-            "options": {
-                "A": "30 SEPT",
-                "B": "1ST OCT",
-                "C": "1st OCTOMBER",
-                "D": "4TH OCT"
-            },
-            "answer": {
-                "B": "1ST OCT"
-            }
-        }
-    },
-    "18": {
-        "Where is Ilorin Found?": {
-            "options": {
-                "A": "Nigeria",
-                "B": "Algeria",
-                "C": "Lybia",
-                "D": "Kwara"
-            },
-            "answer": {
-                "D": "Kwara"
-            }
-        }
-    },
-    "19": {
-        "What is the capital of Nigeria?": {
-            "options": {
-                "A": "NIger",
-                "B": "Niaja",
-                "C": "Abuja",
-                "D": "Lagos"
-            },
-            "answer": {
-                "C": "Abuja"
-            }
-        }
+import json
+import uuid
+import random
+import getpass  # For secure, hidden password inputs
+
+QUIZ_FILE = "quiz.json"
+USER_FILE = "users.json"
+
+# ==========================================
+# FILE I/O OPERATIONS
+# ==========================================
+def load_json(filename):
+    try:
+        with open(filename, "r") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def save_json(filename, data):
+    try:
+        with open(filename, "w") as file:
+            json.dump(data, file, indent=4)
+    except Exception as e:
+        print(f"Error saving data: {e}")
+
+# ==========================================
+# AUTHENTICATION ENGINE
+# ==========================================
+def register_user():
+    print("\n--- Create Account ---")
+    users = load_json(USER_FILE)
+    
+    username = input("Enter a unique username: ").strip()
+    if not username:
+        print("Username cannot be empty.")
+        return None
+    
+    if username in users:
+        print("Username already exists! Try logging in.")
+        return None
+        
+    password = getpass.getpass("Enter a password: ").strip()
+    if not password:
+        print("Password cannot be empty.")
+        return None
+        
+    users[username] = {
+        "password": password,  # In a production web app, this would be hashed
+        "highscore": 0
     }
-}
+    save_json(USER_FILE, users)
+    print("Registration successful!")
+    return username
+
+def login_user():
+    print("\n--- Login ---")
+    users = load_json(USER_FILE)
+    
+    username = input("Username: ").strip()
+    password = getpass.getpass("Password: ").strip()
+    
+    if username in users and users[username]["password"] == password:
+        print(f"Welcome back, {username}!")
+        return username
+    
+    print("Invalid username or password.")
+    return None
+
+# ==========================================
+# CORE GAME ALGORITHMS
+# ==========================================
+def fetch_question(score, answered_questions):
+    quiz = load_json(QUIZ_FILE)
+    unanswered_ids = [k for k in quiz.keys() if k not in answered_questions]
+
+    if not unanswered_ids:
+        print("\n🎉 Spectacular! You have answered all available questions in our database!")
+        return score, False
+
+    random_id = random.choice(unanswered_ids)
+    answered_questions.append(random_id)
+    
+    question_data = quiz[random_id]
+    
+    print(f"\n📝 {question_data['question']}")
+    for option_id, option_text in question_data["options"].items():
+        print(f"  {option_id}. {option_text}")
+
+    response = input("\nYour answer (A, B, C, D) or 'q' to quit: ").strip().upper()
+
+    if response == "Q":
+        print("Quitting current game session...")
+        return score, False
+
+    correct_letter = question_data["answer"].upper()
+    
+    if response == correct_letter:
+        print("✅ Correct!")
+        score += 1
+    else:
+        print(f"❌ Wrong! The correct answer was {correct_letter}.")
+        
+    return score, True
+
+def update_highscore(username, final_score):
+    users = load_json(USER_FILE)
+    if username in users:
+        current_record = users[username].get("highscore", 0)
+        if final_score > current_record:
+            print(f"🏆 New Personal High Score! Old: {current_record} ➔ New: {final_score}")
+            users[username]["highscore"] = final_score
+            save_json(USER_FILE, users)
+
+def show_leaderboard():
+    print("\n🏆 === GLOBAL LEADERBOARD ===")
+    users = load_json(USER_FILE)
+    
+    # Sort users by highscore descending
+    sorted_users = sorted(users.items(), key=lambda item: item[1].get("highscore", 0), reverse=True)
+    
+    if not sorted_users:
+        print("No high scores recorded yet. Be the first!")
+        return
+        
+    for index, (user, data) in enumerate(sorted_users[:10], start=1):
+        print(f"{index}. {user:<15} - {data.get('highscore', 0)} pts")
+
+def add_new_question():
+    quiz = load_json(QUIZ_FILE)
+    print(f"\n--- Adding Question #{len(quiz) + 1} ---")
+    
+    question_text = input("Enter the quiz question: ").strip()
+    while not question_text:
+        question_text = input("Question cannot be blank: ").strip()
+        
+    options = {}
+    for letter in ["A", "B", "C", "D"]:
+        opt = input(f"Enter Option {letter}: ").strip()
+        while not opt:
+            opt = input(f"Option {letter} cannot be blank: ").strip()
+        options[letter] = opt
+
+    correct_answer = input("Enter the correct Option Letter (A, B, C, or D): ").strip().upper()
+    while correct_answer not in ["A", "B", "C", "D"]:
+        correct_answer = input("Invalid choice. Please enter A, B, C, or D: ").strip().upper()
+
+    # Clean standardized data layout
+    new_question_structure = {
+        "question": question_text,
+        "options": options,
+        "answer": correct_answer
+    }
+    
+    quiz[str(uuid.uuid4())] = new_question_structure
+    save_json(QUIZ_FILE, quiz)
+    print("Question added successfully!")
+
+def play_game(username):
+    quiz = load_json(QUIZ_FILE)    
+    if not quiz:
+        print("\n⚠️ No questions available! Please ask an administrator to add questions first.")
+        return
+
+    score = 0
+    answered_questions = []
+    total_pool = len(quiz)
+    
+    print(f"\n🎬 Game started! Player: {username}")
+    while len(answered_questions) < total_pool:
+        score, keep_playing = fetch_question(score, answered_questions)
+        if not keep_playing:
+            break
+        print(f"Current Score: {score}")
+        
+    print(f"\n=== Game Over! Final Score: {score}/{len(answered_questions)} ===")
+    if username:
+        update_highscore(username, score)
+
+# ==========================================
+# MAIN ROUTER
+# ==========================================
+def main():
+    current_user = None
+    
+    while True:
+        if not current_user:
+            print("\n=== GENERAL QUIZ ===")
+            print("1. Login")
+            print("2. Register New Account")
+            print("3. Play as Guest")
+            print("4. View Leaderboard")
+            print("5. Add New Question")
+            print("6. Exit")
+            
+            choice = input("Select an option (1-6): ").strip()
+            if choice == "1":
+                current_user = login_user()
+            elif choice == "2":
+                current_user = register_user()
+            elif choice == "3":
+                play_game(username=None)
+            elif choice == "4":
+                show_leaderboard()
+            elif choice == "5":
+                add_new_question()
+            elif choice == "6":
+                print("\nThanks for playing! Goodbye.")
+                break
+        else:
+            print(f"\n=== LOGGED IN AS: {current_user} ===")
+            print("1. Play Quiz")
+            print("2. View Leaderboard")
+            print("3. Add New Question")
+            print("4. Logout")
+            print("5. Exit")
+            
+            choice = input("Select an option (1-5): ").strip()
+            if choice == "1":
+                play_game(current_user)
+            elif choice == "2":
+                show_leaderboard()
+            elif choice == "3":
+                add_new_question()
+            elif choice == "4":
+                print(f"Logged out from {current_user}.")
+                current_user = None
+            elif choice == "5":
+                print("\nThanks for playing! Goodbye.")
+                break
+
+if __name__ == "__main__":
+    main()
